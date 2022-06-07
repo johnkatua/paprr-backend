@@ -25,3 +25,5 @@ const courseSchema = new moongose.Schema(
   },
   { timestamps: true }
 );
+
+export const Course = mongoose.model('course', courseSchema);
