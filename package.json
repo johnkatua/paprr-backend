@@ -4,7 +4,9 @@
   "description": "Paprr is a web application to display all the past papers done by students at the Technical University of Kenya undertaking their diploma and degree courses.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir dist",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
