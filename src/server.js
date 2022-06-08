@@ -6,6 +6,7 @@ import { baseConfig } from "./config";
 import { connect } from "./utils/db";
 import facultyRouter from "./resources/faculty/faculty.router";
 import courseRouter from "./resources/course/course.router";
+import paperRouter from "./resources/paper/paper.router";
 
 export const app = express();
 
@@ -16,6 +17,7 @@ app.use(morgan("dev"));
 
 app.use("/api/faculty", facultyRouter);
 app.use("/api/course", courseRouter);
+app.use("/api/paper", paperRouter);
 
 export const start = async () => {
   try {
