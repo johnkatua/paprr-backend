@@ -4,9 +4,7 @@ import controllers from "./faculty.controllers";
 const router = Router();
 
 router.route("/")
-  .get(controllers.getMany)
+  .get(controllers.getAll)
   .post(controllers.createOne);
-
-console.log('hello');
 
 export default router;

@@ -1,4 +1,4 @@
-export const getAll = model = async (req, res) => {
+export const getAll = model => async (req, res) => {
   try {
     const fetchedData = await model.find().lean().exec();
     res.status(200).json({
@@ -27,3 +27,11 @@ export const crudControllers = (model) => ({
   createOne: createOne(model),
   getAll: getAll(model)
 });
+
+export const remove = model => async (req, res) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
