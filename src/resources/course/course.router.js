@@ -3,11 +3,8 @@ import controllers from "./course.controllers";
 
 const router = Router();
 
-router.route("/")
-  .get(controllers.getAll)
-  .post(controllers.createOne)
+router.route("/").get(controllers.getAll).post(controllers.createOne);
 
-router.route("/:id")
-  .delete(controllers.removeItem)
+router.route("/:id").delete(controllers.removeItem);
 
 export default router;
