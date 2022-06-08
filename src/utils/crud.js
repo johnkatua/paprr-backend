@@ -5,33 +5,48 @@ export const getAll = model => async (req, res) => {
       data: fetchedData
     })
   } catch (error) {
-    console.log(error);
-    res.status(400).end();
+    res.status(400).json({
+      msg: error
+    });
   }
 }
 
 export const createOne = (model) => async (req, res) => {
-  console.log('helloooo');
   try {
     const createdItem = await model.create({ ...req.body });
     res.status(201).json({
       data: createdItem,
+      msg: 'Item created successfully'
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).end();
+    res.status(400).json({
+      msg: error
+    });
   }
 };
 
-export const crudControllers = (model) => ({
-  createOne: createOne(model),
-  getAll: getAll(model)
-});
-
-export const remove = model => async (req, res) => {
+export const removeItem = model => async (req, res) => {
   try {
-    
+    const deletedItem = await model.findOneAndRemove({ _id: req.params.id });
+
+    if (!deletedItem) {
+      return res.status(404).json({
+        msg: `No item found with an id of ${req.params.id}`
+      });
+    }
+    return res.status(200).json({
+      msg: 'Item deleted successfully'
+    })
   } catch (error) {
-    
+    res.status(400).json({
+      msg: error
+    })
   }
 }
+
+export const crudControllers = (model) => ({
+  createOne: createOne(model),
+  getAll: getAll(model),
+  removeItem: removeItem(model)
+});
+
