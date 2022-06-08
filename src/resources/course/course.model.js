@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import moongose from "mongoose";
 
 const courseSchema = new moongose.Schema(
   {
@@ -18,7 +18,7 @@ const courseSchema = new moongose.Schema(
       default: "degree",
     },
     faculty: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: moongose.SchemaTypes.ObjectId,
       ref: "faculty",
       required: true,
     },
@@ -26,4 +26,4 @@ const courseSchema = new moongose.Schema(
   { timestamps: true }
 );
 
-export const Course = mongoose.model("course", courseSchema);
+export const Course = moongose.model("course", courseSchema);
