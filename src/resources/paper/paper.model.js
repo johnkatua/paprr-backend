@@ -1,4 +1,4 @@
-import moongose from 'moongose';
+import moongose from "moongose";
 
 const paperSchema = new moongose.Schema(
   {
@@ -8,37 +8,37 @@ const paperSchema = new moongose.Schema(
     },
     file: {
       type: String,
-      required: true
+      required: true,
     },
     year: {
       type: String,
       required: true,
-      enum: ['firstYear', 'secondYear', 'thirdYear', 'fourthYear'],
-      default: 'firstYear'
+      enum: ["firstYear", "secondYear", "thirdYear", "fourthYear"],
+      default: "firstYear",
     },
     academicYear: {
       type: String,
-      required: true
+      required: true,
     },
     status: {
       type: String,
       required: true,
-      enum: ['mainExam', 'cat'],
-      default: 'mainExam'
+      enum: ["mainExam", "cat"],
+      default: "mainExam",
     },
     due: Date,
     course: {
       type: moongose.SchemaTypes.ObjectId,
-      ref: 'course',
+      ref: "course",
       required: true,
     },
     faculty: {
       type: moongose.SchemaTypes.ObjectId,
-      ref: 'faculty',
-      required: true
-    }
+      ref: "faculty",
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-export const Paper = moongose.model('paper', paperSchema);
+export const Paper = moongose.model("paper", paperSchema);
