@@ -7,6 +7,7 @@ const facultySchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    acronym: String,
     description: String,
   },
   { timestamps: true }

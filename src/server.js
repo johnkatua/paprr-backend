@@ -4,6 +4,7 @@ import cors from "cors";
 
 import { baseConfig } from "./config";
 import { connect } from "./utils/db";
+import facultyRouter from "./resources/faculty/faculty.router";
 
 export const app = express();
 
@@ -11,6 +12,13 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan("dev"));
+
+app.use("/api/faculty", facultyRouter);
+
+app.get("/", (req, res) => {
+  console.log('hello')
+  res.send({ msg: 'hello' })
+})
 
 export const start = async () => {
   try {
