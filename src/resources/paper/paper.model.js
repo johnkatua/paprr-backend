@@ -41,4 +41,6 @@ const paperSchema = new moongose.Schema(
   { timestamps: true }
 );
 
+paperSchema.index({ name: 1, academicYear: 1, status: 1}, { unique: true });
+
 export const Paper = moongose.model("paper", paperSchema);
