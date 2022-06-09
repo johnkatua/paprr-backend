@@ -44,8 +44,34 @@ export const removeItem = (model) => async (req, res) => {
   }
 };
 
+export const addPaper = (model) => async (req, res) => {
+  const { name, year, academicYear, status, due, course, faculty } = req.body;
+  const file = req.file.path;
+  try {
+    const paper = await model.create({
+      name,
+      year,
+      academicYear,
+      status,
+      due,
+      course,
+      faculty,
+      file,
+    });
+    res.status(201).json({
+      data: paper,
+      msg: "Item created successfully",
+    });
+  } catch (error) {
+    res.status(400).json({
+      msg: error,
+    });
+  }
+};
+
 export const crudControllers = (model) => ({
   createOne: createOne(model),
   getAll: getAll(model),
   removeItem: removeItem(model),
+  addPaper: addPaper(model),
 });
