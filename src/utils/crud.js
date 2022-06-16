@@ -69,9 +69,24 @@ export const addPaper = (model) => async (req, res) => {
   }
 };
 
+export const getExamPaperByFaculty = (model) => async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await model.find({ faculty: id }).lean().exec();
+    res.status(200).json({
+      data: data
+    })
+  } catch (error) {
+    res.status(400).json({
+      msg: error
+    })
+  }
+}
+
 export const crudControllers = (model) => ({
   createOne: createOne(model),
   getAll: getAll(model),
   removeItem: removeItem(model),
   addPaper: addPaper(model),
+  getExamPaperByFaculty: getExamPaperByFaculty(model)
 });
