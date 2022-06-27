@@ -1,3 +1,24 @@
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
+export const signUp = model => async (req, res) => {
+  try {
+    const user = await model.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 10)
+    });
+    res.status(201).json({
+      data: user,
+      msg: "User created successfully"
+    })
+  } catch (error) {
+    res.status(500).json({
+      msg: error
+    })
+  }
+};
+
 export const getAll = (model) => async (req, res) => {
   try {
     const fetchedData = await model.find().lean().exec();
