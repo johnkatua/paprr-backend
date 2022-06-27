@@ -7,7 +7,7 @@ import { connect } from "./utils/db";
 import facultyRouter from "./resources/faculty/faculty.router";
 import courseRouter from "./resources/course/course.router";
 import paperRouter from "./resources/paper/paper.router";
-import userRouter from './resources/user/user.router';
+import userRouter from "./resources/user/user.router";
 
 export const app = express();
 

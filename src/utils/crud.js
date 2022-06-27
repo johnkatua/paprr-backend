@@ -152,5 +152,5 @@ export const crudControllers = (model) => ({
   addPaper: addPaper(model),
   getExamPaperByFaculty: getExamPaperByFaculty(model),
   signIn: signIn(model),
-  signUp: signUp(model)
+  signUp: signUp(model),
 });
