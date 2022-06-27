@@ -1,6 +1,6 @@
-import moongose from "mongoose";
+import mongoose from "mongoose";
 
-const paperSchema = new moongose.Schema(
+const paperSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -28,12 +28,12 @@ const paperSchema = new moongose.Schema(
     },
     due: Date,
     course: {
-      type: moongose.SchemaTypes.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "course",
       required: true,
     },
     faculty: {
-      type: moongose.SchemaTypes.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "faculty",
       required: true,
     },
@@ -43,4 +43,4 @@ const paperSchema = new moongose.Schema(
 
 paperSchema.index({ name: 1, academicYear: 1, status: 1 }, { unique: true });
 
-export const Paper = moongose.model("paper", paperSchema);
+export const Paper = mongoose.model("paper", paperSchema);
