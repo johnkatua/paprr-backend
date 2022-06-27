@@ -25,7 +25,6 @@ export const signUp = (model) => async (req, res) => {
 export const signIn = (model) => async (req, res) => {
   try {
     const user = await model.findOne({ email: req.body.email });
-    console.log(user);
     if(!user) {
       return res.status(404).json({
         msg: "User not found"
@@ -54,40 +53,6 @@ export const signIn = (model) => async (req, res) => {
         msg: "Login Successfully",
         accessToken: token,
       });
-    // if (!user) {
-    //   res.status(404).json({
-    //     msg: "User not found",
-    //   });
-
-    //   let passwordIsValid = bcrypt.compareSync(
-    //     req.body.password,
-    //     user.password
-    //   );
-
-    //   if (!passwordIsValid) {
-    //     res.status(401).json({
-    //       accessToken: null,
-    //       msg: "Invalid password",
-    //     });
-    //   }
-
-    //   let token = jwt.sign({ id: user._id }, process.env.API_SECRET, {
-    //     expiresIn: 86400,
-    //   });
-
-    //   res.status(200).json({
-    //     accessToken: token
-    //   })
-
-      // res.status(200).json({
-      //   data: {
-      //     id: user._id,
-      //     email: user.email,
-      //     name: user.name,
-      //   },
-      //   msg: "Login Successfully",
-      //   accessToken: token,
-      // });
   } catch (error) {
     res.status(500).json({
       msg: error,
