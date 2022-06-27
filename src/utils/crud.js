@@ -1,21 +1,62 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
-export const signUp = model => async (req, res) => {
+export const signUp = (model) => async (req, res) => {
   try {
     const user = await model.create({
       name: req.body.name,
       email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 10)
+      password: bcrypt.hashSync(req.body.password, 10),
     });
     res.status(201).json({
       data: user,
-      msg: "User created successfully"
-    })
+      msg: "User created successfully",
+    });
   } catch (error) {
     res.status(500).json({
-      msg: error
-    })
+      msg: error,
+    });
+  }
+};
+
+export const signIn = (model) => async (req, res) => {
+  try {
+    const user = await model.findOne({ email: req.body.email });
+    if (!user) {
+      res.status(404).json({
+        msg: "User not found",
+      });
+
+      let passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        res.status(401).json({
+          accessToken: null,
+          msg: "Invalid password",
+        });
+      }
+
+      let token = jwt.sign({ id: user.id }, process.env.API_SECRET, {
+        expiresIn: 86400,
+      });
+
+      res.status(200).json({
+        data: {
+          id: user._id,
+          email: user.email,
+          name: user.name,
+        },
+        msg: "Login Successfully",
+        accessToken: token,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      msg: error,
+    });
   }
 };
 
