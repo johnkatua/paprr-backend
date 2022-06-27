@@ -151,4 +151,6 @@ export const crudControllers = (model) => ({
   removeItem: removeItem(model),
   addPaper: addPaper(model),
   getExamPaperByFaculty: getExamPaperByFaculty(model),
+  signIn: signIn(model),
+  signUp: signUp(model)
 });
